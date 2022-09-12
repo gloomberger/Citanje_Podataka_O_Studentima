@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css"
     <title>Citanje podataka o studentima</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    
 </head>
 
 <body>
@@ -28,10 +28,10 @@
             
 
                 this.getInfo = function () {
-                   return 'Name:' + this.name + '\n' + 
-                          'Address:' + this.address + '\n' +
-                          'Phone:' + this.phone + '\n' +
-                          'Course:' + this.course + '\n'
+                   return "Name :" + " " + this.name + '\n' + 
+                          "Address :" + " " + this.address + '\n' +
+                          "Phone :" + " " + this.phone + '\n' +
+                          "Course :" + " " + this.course
             }
         };
 
@@ -63,7 +63,7 @@
                         studentNumberRow = studentNumberRow + 4 
                         student[i] = student[i].getInfo();
                 }
-                else] {
+                else {
                     i++
                 }
                 textArea.innerHTML += student[i] + '\n' + '\n'; }
