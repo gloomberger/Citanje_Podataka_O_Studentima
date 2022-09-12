@@ -36,7 +36,7 @@
         };
 
         button.addEventListener("click", function () {
-            textArea.innerHTML = "";
+            textarea.innerHTML = "";
             getData();
         });
 
@@ -66,10 +66,10 @@
                 else {
                     i++
                 }
-                textArea.innerHTML += student[i] + '\n' + '\n'; }
+                textarea.innerHTML += student[i] + '\n' + '\n'; }
             }
             catch (err) {
-                textArea.innerHTML = "Fetch problem:" + err.message;
+                textarea.innerHTML = "Fetch problem:" + err.message;
             }
             finally {
                 loader.style.display = "none";
