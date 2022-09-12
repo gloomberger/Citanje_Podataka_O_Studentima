@@ -4,39 +4,79 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sablon za kreiranje objekata studenata</title>
+    <link rel="stylesheet" href="style.css" type="text/css"
+    <title>Citanje podataka o studentima</title>
 </head>
 
 <body>
 
+    <button id="get-info">Fetch</button>
+    <div id="loader"></div>
+    <textarea id="my-text-area" rows="24"></textarea>
+
     <script>
-        class Student {
-            constructor(name, address, phone, course) {
+
+        let button = document.getElementById("get-info");
+        let textarea = document.getElementById("my-text-area");
+        let loader = document.getElementById("loader");
+
+        function Student(name, address, phone, course) {
                 this.name = name;
                 this.address = address;
                 this.phone = phone;
                 this.course = course;
+            
+
+                this.getInfo = function () {
+                   return 'Name:' + this.name + '\n' + 
+                          'Address:' + this.address + '\n' +
+                          'Phone:' + this.phone + '\n' +
+                          'Course:' + this.course + '\n'
             }
+        };
 
-            getInfo() {
+        button.addEventListener("click", function () {
+            textArea.innerHTML = "";
+            getData();
+        });
 
-                return 'Name:' + this.name + '\n' + 
-                'Address:' + this.address + '\n' +
-                'Phone:' + this.phone + '\n' +
-                'Course:' + this.course + '\n'
+        async function getData() {
+            loader.style.display = "inline-block";
+            try {
+                let response = await fetch("https://v-dresevic.github.io/Advanced-JavaScript-Programming/data/students.txt");
+                if (response.status !== 200) {
+                    throw new Error("Error while reading file.");
+                }
+
+            let text = await response.text();
+            var data = text.split('\n');
+            var student = [];
+            let studentNumberRow = 0;
+
+            for (let i = 0; i < 5; i++) {
+                if (student.length[i] !== 4) {
+                    student.push(new Student(
+                        this.name = data[0 + studentNumberRow],
+                        this.address = data[1 + studentNumberRow],
+                        this.phone = data[2 + studentNumberRow],
+                        this.course = data[3 + studentNumberRow]));
+                        studentNumberRow = studentNumberRow + 4 
+                        student[i] = student[i].getInfo();
+                }
+                else] {
+                    i++
+                }
+                textArea.innerHTML += student[i] + '\n' + '\n'; }
+            }
+            catch (err) {
+                textArea.innerHTML = "Fetch problem:" + err.message;
+            }
+            finally {
+                loader.style.display = "none";
             }
         }
 
-        var student1 = new Student("John Benson", "High Park 36", "(507) 833-3567", "Geography");
-        var student2 = new Student("Mina Kostic", "Milosa Obrenovica 45", "+385962377", "Art");
-        var student3 = new Student("Andrijana Bogdanovic", "Dimitrija Tucovica 6", "+153895652", "Fashion");
-        var student4 = new Student("Boris Skorupan", "Rajka Tadica 33", "+7594698325", "Computer Science");
-
-        console.log(student1.getInfo());
-        console.log(student2.getInfo());
-        console.log(student3.getInfo());
-        console.log(student4.getInfo());
-
+        
     </script>
     
 </body>
